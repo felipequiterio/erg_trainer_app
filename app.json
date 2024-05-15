@@ -1,8 +1,10 @@
 {
   "expo": {
     "name": "MyFirstApp",
-    "slug": "MyFirstApp",
+    "slug": "myFirstApp",
     "version": "1.0.0",
+    "entryPoint": "./app/_layout.tsx",
+    "assetBundlePatterns": ["**/*"],
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
