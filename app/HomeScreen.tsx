@@ -1,30 +1,37 @@
-// app/HomeScreen.tsx
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { HomeScreenNavigationProp } from '../components/navigation/types';
 
 const HomeScreen = () => {
+  const navigation = useNavigation<HomeScreenNavigationProp>();
+
+  const handlePress = () => {
+    console.log('HomeScreen pressed');
+    navigation.navigate('Profile'); // Navigate to ProfileScreen
+  };
+
+  console.log('HomeScreen rendered');
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
-      <Text style={styles.welcome}>Welcome to the Home Screen!</Text>
-    </View>
+    <TouchableWithoutFeedback onPress={handlePress}>
+      <View style={styles.container}>
+        <Text style={styles.text}>Welcome to the Home Screen! Tap to go to Profile.</Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#00f', // Distinct blue background color
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  welcome: {
-    fontSize: 18,
-    marginTop: 10,
+  text: {
+    fontSize: 24, // Larger text size for better visibility
+    color: '#fff', // White color to contrast with the blue background
   },
 });
 
