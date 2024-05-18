@@ -1,12 +1,12 @@
-// app/HomeScreen.tsx
+// components/HomeScreen.tsx
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home Screen</Text>
-      <Text style={styles.welcome}>Welcome to the Home Screen!</Text>
+      <Text style={styles.txt}>Home Screen</Text>
+      <Text style={styles.subtxt}>Welcome to the Home Screen!</Text>
     </View>
   );
 };
@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
+  txt: {
     fontSize: 24,
     fontWeight: 'bold',
   },
-  welcome: {
+  subtxt: {
     fontSize: 18,
     marginTop: 10,
   },
