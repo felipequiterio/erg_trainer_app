@@ -1,33 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import axios from 'axios';
+import Video from 'react-native-video';
 
 const LoginScreen: React.FC = () => {
-  const [apiData, setApiData] = useState<string | null>(null);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetchDataFromAPI();
+    fetchVideoUrl();
   }, []);
 
-  const fetchDataFromAPI = async () => {
+  const fetchVideoUrl = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/hello'); // Adjust the URL as needed
-      console.log('API response:', response.data); // Log the response
-      setApiData(response.data.message);
+      const response = await axios.get('http://localhost:3000/uploads/Test.mp4');
+      if (response.status === 200) {
+        setVideoUrl('http://localhost:3000/uploads/Test.mp4');
+      }
     } catch (error) {
-      console.error('Error fetching data from API:', error);
+      console.error('Error fetching video URL:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login Screen</Text>
-      {apiData ? (
-        <Text style={styles.apiData}>{apiData}</Text>
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : videoUrl ? (
+        <Video
+          source={{ uri: videoUrl }}
+          style={styles.video}
+          controls
+          resizeMode="contain"
+        />
       ) : (
-        <Text style={styles.apiData}>No data fetched yet</Text>
+        <Text>Failed to load video.</Text>
       )}
-      <Button title="Fetch API Data" onPress={fetchDataFromAPI} />
     </View>
   );
 };
@@ -37,15 +48,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
   },
   title: {
     fontSize: 24,
     marginBottom: 16,
   },
-  apiData: {
-    fontSize: 18,
-    marginBottom: 16,
+  video: {
+    width: 300,
+    height: 300,
   },
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../components/navigation/types';
@@ -14,9 +14,10 @@ const HomeScreen: React.FC = () => {
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={handlePress}>
-      <Text style={styles.title}>Home Page</Text>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <Text style={styles.title}>Home Screen</Text>
+      <Button title="Go to Login" onPress={handlePress} />
+    </View>
   );
 };
 
@@ -25,11 +26,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
   },
   title: {
     fontSize: 24,
-    color: 'black',
+    marginBottom: 16,
   },
 });
 
