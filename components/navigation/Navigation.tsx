@@ -8,8 +8,6 @@ import ProfileScreen from '../../app/ProfileScreen';
 const Stack = createStackNavigator();
 
 const Navigation = () => {
-  console.log('Navigation rendered'); // Log to verify Navigation component is rendered
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">

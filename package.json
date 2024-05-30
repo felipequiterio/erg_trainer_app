@@ -4,6 +4,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
     "@types/react": "~18.2.79",
+    "axios": "^1.7.2",
     "expo": "^51.0.5",
     "expo-router": "^3.5.12",
     "expo-web-browser": "^13.0.3",

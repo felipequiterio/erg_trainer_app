@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const ProfileScreen = () => {
-  console.log('ProfileScreen rendered'); // Log to verify ProfileScreen component is rendered
-
+const ProfileScreen: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Profile Page</Text>
+      <Text style={styles.title}>Profile Page</Text>
     </View>
   );
 };
@@ -16,11 +14,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#00f', // Distinct blue background color
+    backgroundColor: 'blue',
   },
-  text: {
+  title: {
     fontSize: 24,
-    color: '#fff', // White color to contrast with the blue background
+    color: 'white',
   },
 });
 

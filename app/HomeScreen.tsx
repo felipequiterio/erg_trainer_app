@@ -1,24 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import { HomeScreenNavigationProp } from '../components/navigation/types';
+import { RootStackParamList } from '../components/navigation/types';
 
-const HomeScreen = () => {
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+
+const HomeScreen: React.FC = () => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
   const handlePress = () => {
-    console.log('HomeScreen pressed');
-    navigation.navigate('Profile'); // Navigate to ProfileScreen
+    navigation.navigate('Login');
   };
 
-  console.log('HomeScreen rendered');
-
   return (
-    <TouchableWithoutFeedback onPress={handlePress}>
-      <View style={styles.container}>
-        <Text style={styles.text}>Welcome to the Home Screen! Tap to go to Profile.</Text>
-      </View>
-    </TouchableWithoutFeedback>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
+      <Text style={styles.title}>Home Page</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -27,11 +25,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#00f', // Distinct blue background color
+    backgroundColor: 'white',
   },
-  text: {
-    fontSize: 24, // Larger text size for better visibility
-    color: '#fff', // White color to contrast with the blue background
+  title: {
+    fontSize: 24,
+    color: 'black',
   },
 });
 
