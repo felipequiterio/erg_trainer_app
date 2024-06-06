@@ -1,13 +1,23 @@
-// index.tsx
 import 'react-native-gesture-handler';
 import React from 'react';
-import { registerRootComponent } from 'expo';
-import Navigation from '@/components/Navigation';
+import { LogBox } from 'react-native';
+import Layout from '@/app/_layout';
 
-const App = () => {
-  return <Navigation />;
-};
+// Ignore all non-fatal warnings
+LogBox.ignoreAllLogs(true);
 
-registerRootComponent(App);
+// Suppress console warnings and errors
+console.warn = () => {};
+console.error = () => {};
 
-export default App;
+if (typeof document !== 'undefined') {
+  const { createRoot } = require('react-dom/client');
+  const container = document.getElementById('root');
+
+  if (container) {
+    const root = createRoot(container);
+    root.render(<Layout />);
+  }
+}
+
+export default Layout;

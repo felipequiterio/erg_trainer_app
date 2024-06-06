@@ -1,10 +1,28 @@
 // app/_layout.tsx
-import React from 'react';
-import HomeScreen from '../components/HomeScreen';
-import LoginScreen from '@/components/LoginScreen';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigation from '@/components/Navigation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// comment
-export default function Layout() {
-  return <HomeScreen />;  return <LoginScreen />;
+const Layout = () => {
+  useEffect(() => {
+    const resetStorage = async () => {
+      try {
+        await AsyncStorage.removeItem('user');
+        console.log('Storage reset');
+      } catch (e) {
+        console.error('Failed to reset storage', e);
+      }
+    };
 
-}
+    resetStorage();
+  }, []);
+
+  return (
+    <NavigationContainer independent={true}>
+      <Navigation />
+    </NavigationContainer>
+  );
+};
+
+export default Layout;
