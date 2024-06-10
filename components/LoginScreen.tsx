@@ -19,7 +19,7 @@ const LoginScreen = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>();
 
   const handleLogin = () => {
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'Admin' && password === 'admin') {
       navigation.navigate('Home');
     } else {
       alert('Invalid credentials');

@@ -12,11 +12,11 @@ const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome to the Home Screen!</Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Profile')}>
-        <Text style={styles.buttonText}>Go to Profile</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Dashboard')}>
         <Text style={styles.buttonText}>Go to Dashboard</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Settings')}>
+        <Text style={styles.buttonText}>Go to Settings</Text>
       </TouchableOpacity>
     </View>
   );

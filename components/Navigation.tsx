@@ -5,12 +5,14 @@ import LoginScreen from './LoginScreen';
 import HomeScreen from './HomeScreen';
 import ProfileScreen from './ProfileScreen';
 import DashboardScreen from './DashboardScreen';
+import SettingsScreen from './SettingsScreen';
 
 export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
   Profile: undefined;
   Dashboard: undefined;
+  Settings: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -22,6 +24,7 @@ const Navigation = () => {
       <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Dashboard" component={DashboardScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };
