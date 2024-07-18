@@ -1,8 +1,8 @@
-// app/_layout.tsx
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from '@/components/Navigation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ThemeProviderWrapper } from '@/ThemeContext';
 
 const Layout = () => {
   useEffect(() => {
@@ -19,9 +19,11 @@ const Layout = () => {
   }, []);
 
   return (
-    <NavigationContainer independent={true}>
-      <Navigation />
-    </NavigationContainer>
+    <ThemeProviderWrapper>
+      <NavigationContainer independent={true}>
+        <Navigation />
+      </NavigationContainer>
+    </ThemeProviderWrapper>
   );
 };
 

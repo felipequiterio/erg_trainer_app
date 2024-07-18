@@ -1,8 +1,8 @@
-// components/LoginScreen.tsx
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useTheme } from '@/ThemeContext';
 
 type RootStackParamList = {
   Login: undefined;
@@ -17,6 +17,7 @@ const LoginScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation<LoginScreenNavigationProp>();
+  const { isDarkTheme } = useTheme();
 
   const handleLogin = () => {
     if (username === 'Admin' && password === 'admin') {
@@ -27,22 +28,24 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+    <View style={[styles.container, { backgroundColor: isDarkTheme ? '#000' : '#f5f5f5' }]}>
+      <Text style={[styles.title, { color: isDarkTheme ? '#fff' : '#000' }]}>Login</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: isDarkTheme ? '#fff' : '#000', borderColor: isDarkTheme ? '#ccc' : '#333' }]}
         placeholder="Username"
+        placeholderTextColor={isDarkTheme ? '#ccc' : '#333'}
         value={username}
         onChangeText={setUsername}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: isDarkTheme ? '#fff' : '#000', borderColor: isDarkTheme ? '#ccc' : '#333' }]}
         placeholder="Password"
+        placeholderTextColor={isDarkTheme ? '#ccc' : '#333'}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button title="Login" onPress={handleLogin} />
+      <Button title="Login" onPress={handleLogin} color={isDarkTheme ? '#007bff' : '#007bff'} />
     </View>
   );
 };
@@ -52,7 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 16,
-    backgroundColor: '#f5f5f5',
   },
   title: {
     fontSize: 24,
@@ -61,7 +63,6 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: '#ccc',
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 8,
