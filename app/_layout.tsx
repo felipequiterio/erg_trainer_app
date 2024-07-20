@@ -1,18 +1,29 @@
-import React, { ReactNode } from 'react';
-import { TabBarIcon } from '../components/navigation/TabBarIcon';
-import { Colors } from '../constants/Colors';
-import { useColorScheme } from '../hooks/useColorScheme';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigation from '@/components/Navigation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ThemeProviderWrapper } from '../ThemeContext';
 
-interface LayoutProps {
-  children: ReactNode;
-}
+const Layout = () => {
+  useEffect(() => {
+    const resetStorage = async () => {
+      try {
+        await AsyncStorage.removeItem('user');
+        console.log('Storage reset');
+      } catch (e) {
+        console.error('Failed to reset storage', e);
+      }
+    };
 
-const Layout = ({ children }: LayoutProps) => {
+    resetStorage();
+  }, []);
+
   return (
-    <div>
-      {/* Layout content */}
-      {children}
-    </div>
+    <ThemeProviderWrapper>
+      <NavigationContainer independent={true}>
+        <Navigation />
+      </NavigationContainer>
+    </ThemeProviderWrapper>
   );
 };
 
